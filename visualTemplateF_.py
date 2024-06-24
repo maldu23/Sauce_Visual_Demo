@@ -33,7 +33,7 @@ driver = webdriver.Remote(command_executor=url, options=options)
 def test_website():
 
     #creates the visual build
-    client.create_build(name='Test woot')
+    client.create_build(name='Test Visual')
     
     #point to customer website
     driver.get("https://www.insertCustomerWebsiteHere.com/")
@@ -43,6 +43,7 @@ def test_website():
 
     #creates snapshot on the first page
     client.create_snapshot_from_webdriver(
+        #it is imperative that you use the same name for the screenshot here as you use in visualTemplateF.py
         name="First Page",
         session_id=driver.session_id,
         capture_dom=True
@@ -80,7 +81,8 @@ def test_website():
 
     #creates snapshot on the second page
     client.create_snapshot_from_webdriver(
-        name="Deals Page",
+        #it is imperative that you use the same name for the screenshot here as you use in visualTemplateF.py
+        name="Second Page",
         session_id=driver.session_id,
         capture_dom=True,
 
