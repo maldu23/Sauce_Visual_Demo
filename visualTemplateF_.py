@@ -73,7 +73,9 @@ def test_website():
     #Find an element that you would like to break. I personally like to find an element with some text in it and either remove the text entirely or change it.
     element3 = driver.find_elements(By.CLASS_NAME, 'xxx')
 
-    #Here you will break the element
+    #Here you will change the text on the website. This will introduce visual changes to the customer UI WITHOUT breaking the functional test. This part is important.
+    #If you break the Functional test with your changes, try changing the elements you break or change the text. 
+    #Tip, somtimes removing the text will make the button unclickable. Try to change the text to a phrase or letter instead in this case.
     driver.execute_script("arguments[0].innerText = 'change element text to this';", element3)
 
     #creates snapshot on the second page
