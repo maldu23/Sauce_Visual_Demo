@@ -31,6 +31,8 @@ driver = webdriver.Remote(command_executor=url, options=options)
 
 
 def test_website():
+#Please feel free to rename all elements and names of screenshots tailored to your customer's website
+
 
     #creates the visual build
     client.create_build(name='Test Visual')
@@ -43,20 +45,24 @@ def test_website():
 
     #creates snapshot on the first page
     client.create_snapshot_from_webdriver(
-        name="Second Page",
+        name="First Page",
         session_id=driver.session_id,
         capture_dom=True
     )
 
     #Here are some ways to find elements. You will likely use Class Name and ID the most and should definitely start there. 
     #You should only use the others if these 2 don't work.
-    driver.find_elements(By.CLASS_NAME, 'xxx')
     driver.find_element(By.ID, '')
     driver.find_element(By.XPATH, '')
+    driver.find_elements(By.CLASS_NAME, '')
+    #if the class_name has spaces in the locator, you need to use CSS_SELECTOR
+    #ex: class = button tacofun btn 
+    #this will end up looking like: driver.find_element(By.CSS_SELECTOR, '.button.tacofun.btn')
     driver.find_element(By.CSS_SELECTOR, '')
 
     #Partial link text is especially useful when trying to click something that isn't a button. 
-    #Often websites have href link elements that cannot be found and clicked the same way buttons can be.
+    #Often websites have href link elements that cannot be found by Class_Name/ID and clicked the same way buttons can be.
+    #You do not need to use this in most cases, so you can comment out if not necessary
     driver.find_element(By.PARTIAL_LINK_TEXT, '')
 
     #Especially if you intend to use an element in multiple ways, I would set it to a variable
@@ -71,18 +77,22 @@ def test_website():
 
     #creates snapshot on the second page
     client.create_snapshot_from_webdriver(
-        name="Deals Page",
+        name="Second Page",
         session_id=driver.session_id,
         capture_dom=True,
 
         #allows you to ignore an element you saved earlier
         ignore_elements = [
             IgnoreElementRegion(element = element2)
-        ]
-
+        ],
+        #if you want to take full page screenshots otherwise comment this out
+        full_page_config=FullPageConfig()
     )
 
 
+    # you can do a more realistic if else for pass no pass, this one automatically passes no matter what.
+    # sometimes I like to find the title of the last page that I go to on the website
+    # it will look something like driver.title == 'xx' and I will find the title by inspecting the page and ctrl F title
     if 1 == 1:
         driver.execute_script('sauce:job-result=passed')
     else:
