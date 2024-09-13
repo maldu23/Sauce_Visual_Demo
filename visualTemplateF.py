@@ -39,14 +39,12 @@ def test_website():
     
     #point to customer website
     driver.get("https://www.insertCustomerWebsiteHere.com/")
-
-    # Get your Selenium session ID
-    session_id = driver.session_id  
+ 
 
     #creates snapshot on the first page
     client.create_snapshot_from_webdriver(
         name="First Page",
-        session_id=driver.session_id,
+        driver=driver,
         capture_dom=True
     )
 
@@ -74,7 +72,7 @@ def test_website():
     #creates snapshot on the second page
     client.create_snapshot_from_webdriver(
         name="Second Page",
-        session_id=driver.session_id,
+        driver=driver,
         capture_dom=True,
 
         #allows you to ignore an element you saved earlier
