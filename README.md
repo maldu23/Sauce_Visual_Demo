@@ -2,11 +2,28 @@
 
 # Step 1: install dependencies
 
+If you do not have python installed yet, start here:
 ```
 brew install python3
+```
 
+Create virtual environment in your project:
+```
+python3 -m venv myenv
+```
+
+Start your virtual environment:
+```
+source myenv/bin/activate
+```
+
+Install Selenium and Sauce_visual to this virtual environment:
+```
+pip install selenium
 pip install saucelabs_visual
 ```
+
+If you do this within a dedicated terminal in Visual Studio, the virtual environment will apply to your project and those horrid squiggly lines will go away!
 
 
 # Step 2: Create your custom scripts
